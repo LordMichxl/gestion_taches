@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-        public function index(){
-
-    $tasks = Task::all();
-    return view('task.index', compact('tasks'));
+    public function index(){
+        $user = User::findOrFail(Auth::id());
+        $tasks = $user->tasks()->get();
+        return view('task.index', compact('tasks'));
 
     }
     //Afficher le formulaire de creation
@@ -25,10 +25,12 @@ class TaskController extends Controller
             'description'=>'nullable'
         ]);
 
+
         Task::create([
             'titre'=> $request ->titre,
             'description'=>$request ->description,
             'complete' =>false,
+            'user_id' => Auth::id(),
         ]);
         return redirect()->route('task.index')->with('success', 'Tâche créée avec succès');
     } 
@@ -47,6 +49,8 @@ class TaskController extends Controller
             'titre'=> $request ->titre,
             'description'=>$request ->description,
             'complete' =>$request->has('complete'),
+            'user_id' => Auth::id(),
+
         ]);
         return redirect()->route('task.index')->with('success', 'Tâche mise à jour avec succès');
     } 
