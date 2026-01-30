@@ -6,11 +6,10 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+   
     public function up(): void
     {
+        // Création de la table des utilisateurs pour l'authentification
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -21,14 +20,16 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        // Table pour stocker les tokens de réinitialisation de mot de passe
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
             $table->string('token');
             $table->timestamp('created_at')->nullable();
         });
 
+        // Table pour la gestion des sessions utilisateurs
         Schema::create('sessions', function (Blueprint $table) {
-            $table->string('id')->primary();
+            $table->string('id')->primary(); 
             $table->foreignId('user_id')->nullable()->index();
             $table->string('ip_address', 45)->nullable();
             $table->text('user_agent')->nullable();
