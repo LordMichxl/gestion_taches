@@ -1,7 +1,13 @@
+
 <?php
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+
+
+Route::get('/home', function () {
+    return view('home');
+});
 
 Route::get('/', function () {
     return view('welcome');
@@ -12,6 +18,15 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/tasks', function () {
+    return view('tasks.index');
+})->name('tasks.index');
+
+Route::get('/tasks/create', function () {
+    return view('tasks.create');
+})->name('tasks.create');
+
+
 // routes l'authentification
 Route::middleware('auth')->group(function () {
     // Modification du profil utilisateur
@@ -20,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     // Suppression du profil
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 });
 
 
