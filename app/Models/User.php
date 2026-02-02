@@ -2,22 +2,24 @@
 
 namespace App\Models;
 
+ 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Task;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+    class User extends Authenticatable 
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+
+    use HasFactory, Notifiable; // Traits pour la génération de données et les notifications
 
     /**
      * The attributes that are mass assignable.
      *
      * @var list<string>
      */
+    // Champs pouvant être remplis lors de l'inscription ou modification
     protected $fillable = [
         'name',
         'email',
@@ -29,16 +31,18 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+    // Champs cachés lors de la sérialisation (ex : API)
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * voir les attributs qui doivent être convertis.
      *
      * @return array<string, string>
      */
+    
     protected function casts(): array
     {
         return [

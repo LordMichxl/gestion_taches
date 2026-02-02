@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -39,7 +40,7 @@ class TaskController extends Controller
         return view('task.edit', compact('task'));
     }
 
-        public function update(Request $request, task $task){
+        public function update(Request $request, Task $task){
         $request->validate([
             'titre'=> 'required|max:255',
             'description'=>'nullable'
