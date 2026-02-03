@@ -12,6 +12,12 @@ Route::get('/dashboard', function () {
 
 
 // routes l'authentification
+use App\Http\Controllers\RegisterController;
+
+// Inscription
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisterController::class, 'register']);
+
 Route::middleware('auth')->group(function () {
     // Modification du profil utilisateur
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
