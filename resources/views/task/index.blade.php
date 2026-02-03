@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mt-5">
-    <h2>Liste des tâches</h2>
+    <h2>Liste des mes tâches</h2>
     <a href="{{ route('task.create') }}" class="btn btn-primary mb-3">Ajouter une tâche</a>
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
