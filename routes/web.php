@@ -10,6 +10,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
 // routes l'authentification
 Route::middleware('auth')->group(function () {
     // Modification du profil utilisateur
