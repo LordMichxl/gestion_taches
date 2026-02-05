@@ -4,6 +4,8 @@
 <div class="container mt-5">
     <h2>Liste des mes tâches</h2>
     <a href="{{ route('task.create') }}" class="btn btn-primary mb-3">Ajouter une tâche</a>
+    <a href="{{ route('dashboard') }}" class="btn btn-secondary mb-3">Accéder au dashboard</a>
+
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif

@@ -17,7 +17,7 @@ Route::get('/dashboard', function () {
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth','verified')->group(function () {
     // Modification du profil utilisateur
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     // Mise à jour du profil
